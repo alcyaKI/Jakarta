@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Sélectionner un lieu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+
+    <h:body class="bg-light">
+        <!-- Barre de navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">Gestion des Visites</a>
+            </div>
+        </nav>
+
+        <h:messages id="messages" globalOnly="true" showDetail="true"
+                    styleClass="alert alert-success text-center fw-bold"/>
+
+        <div class="container py-5">
+            <div class="card shadow p-4">
+                <h1 class="mb-4 text-center">Sélectionner un lieu</h1>
+
+                <h:form class="mb-3">
+                    <div class="mb-3">
+                        <h:selectOneMenu value="#{lieuBean.selectedLieu}" class="form-select">
+                            <f:selectItems value="#{lieuBean.listeLieux}" var="lieu"
+                                           itemValue="#{lieu.id}" itemLabel="#{lieu.nom}"/>
+                            <f:ajax listener="#{lieuBean.updateWeatherMessage}" render="weather"/>
+                        </h:selectOneMenu>
+                    </div>
+                </h:form>
+
+                <!-- Affichage de la météo -->
+                <div class="text-center mb-3">
+                    <h:outputText id="weather" value="#{lieuBean.weatherMessage}" class="fw-bold text-primary"/>
+                </div>
+
+                <!-- Bouton "Visiter" -->
+                <h:form class="text-center">
+                    <h:commandButton value="Visiter" action="#{visiteBean.afficherFormulaireVisite}" 
+                                     styleClass="btn btn-success px-4"/>
+                </h:form>
+            </div>
+        </div>
+
+        <!-- Formulaire de visite -->
+        <h:panelGroup rendered="#{visiteBean.afficherFormulaireVisite}">
+            <div class="container">
+                <div class="card shadow p-4">
+                    <h2 class="text-center mb-4">Détails de la Visite</h2>
+                    <h:form>
+                        <div class="mb-3">
+                            <label for="dateVisite" class="form-label">Date de visite :</label>
+                            <h:inputText id="dateVisite" value="#{lieuBean.dateVisite}" required="true"
+                                         class="form-control" type="date">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:inputText>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tempsPasse" class="form-label">Temps passé (en heures) :</label>
+                            <h:inputText id="tempsPasse" value="#{lieuBean.tempsPasse}"
+                                         required="true" class="form-control" type="number" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="observations" class="form-label">Observations :</label>
+                            <h:inputTextarea id="observations" value="#{lieuBean.observations}"
+                                             class="form-control" rows="3"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="depenses" class="form-label">Dépenses (en $) :</label>
+                            <h:inputText id="depenses" value="#{lieuBean.depenses}" 
+                                         class="form-control" type="number" />
+                        </div>
+
+                        <!-- Bouton pour sauvegarder la visite -->
+                        <div class="text-center">
+                            <h:commandButton value="Enregistrer" action="#{visiteBean.sauvegarderVisite}"
+                                             styleClass="btn btn-primary px-4"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </h:panelGroup>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>
