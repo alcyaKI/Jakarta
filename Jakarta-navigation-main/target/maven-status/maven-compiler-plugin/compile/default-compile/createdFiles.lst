@@ -1,0 +1,17 @@
+beans\SessionManager.class
+beans\UtilisateurBean.class
+Business\LieuEntrepriseBean.class
+Business\UtilisateurEntrepriseBean.class
+com\mycompany\navigation\JakartaRestConfiguration.class
+entities\VisiteId.class
+beans\NavigationBean.class
+beans\WelcomeBean.class
+entities\Visite.class
+Business\SessionControlFilter.class
+beans\LocalDateTimeConverter.class
+com\mycompany\navigation\resources\JakartaEE10Resource.class
+beans\LieuBean.class
+beans\VisiteBean.class
+entities\Utilisateur.class
+beans\Lieu.class
+Business\VisiteEntrepriseBean.class

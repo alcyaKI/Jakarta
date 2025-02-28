@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+    <head>
+        <title>Visite</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .container {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 350px;
+            }
+
+            h1 {
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                background-color: #007bff;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+                transition: background 0.3s;
+            }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>Visitez-nous</h1>
+            <h2>Karibu kwetu</h2>
+            <h:form>
+               <h:commandButton value="Retour" action="#{navigationController.retour()}" styleClass="btn"/>
+            </h:form>   
+        </div>
+    </body>
+</html>
